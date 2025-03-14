@@ -87,7 +87,6 @@ The system uses a **map** to store user balances, where the user name is the key
 
 - **main.go**: The entry point of the program. Contains the HTTP server and handlers for API endpoints.
 - **transfer.go**: Contains the logic for money transfer, including validation and balance updates.
-- **user.go**: Defines the user structure, holding the user's balance and their associated mutex.
 
 ### Error Handling
 The system handles various error cases:
