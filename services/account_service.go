@@ -22,10 +22,10 @@ func NewAccountService(accounts map[string]*models.Account) *AccountService {
 // Transfer handles money transfer between accounts
 func (s *AccountService) Transfer(req models.TransferRequest) error {
 	if req.From == req.To {
-		return fmt.Errorf("cannot transfer to the same account")
+		return fmt.Errorf("Cannot transfer to the same account")
 	}
 	if req.Amount <= 0 {
-		return fmt.Errorf("transfer amount must be greater than zero")
+		return fmt.Errorf("Transfer amount must be greater than zero")
 	}
 
 	s.mutex.Lock()
@@ -34,7 +34,7 @@ func (s *AccountService) Transfer(req models.TransferRequest) error {
 	s.mutex.Unlock()
 
 	if !fromExists || !toExists {
-		return fmt.Errorf("invalid account")
+		return fmt.Errorf("Invalid user")
 	}
 
 	// Lock source account to prevent race conditions
@@ -43,7 +43,7 @@ func (s *AccountService) Transfer(req models.TransferRequest) error {
 
 	// Check for sufficient balance
 	if fromAcc.Balance < req.Amount {
-		return fmt.Errorf("insufficient funds")
+		return fmt.Errorf("Insufficient funds")
 	}
 
 	// Lock destination account
